@@ -21,28 +21,18 @@ class Counter extends Component {
         return this.state.tags.map(tag => <li key={tag}>{tag}</li>) 
     }
 
+    handleIncrement() {
+
+        console.log("Increment Clicked "+ this)// this keyword is undefined in this function. 
+    }
+
     render() {
 
         return (
             <React.Fragment>
                 <span style={this.style} className={this.getBadgeClassNames()} >{ this.countFormat() }</span> 
-                <button style={{ fontWeight: 'bold' }} className="btn btn-secondary btn-sm" >Increment</button>
-                <ul>
-                    {/* Below li tag we used 'key' because in react each iterative line need unique key, then only react can update that particular element if any changes in DOM */}
-                    { this.state.tags.map(tag => <li key={tag}>{tag}</li>) }
-                </ul>
-                
-                {/* Conditional rendering has two methods */}
-                {/* method 1 */}
-                <ul>
-                    { this.rederTagList() }
-                </ul>
-               
-                {/* method 2 */}
-                <ul>
-                    { this.state.tags.length  === 0 && <p>There are no tags from method 2</p> }
-                    { this.state.tags.map(tag => <li key={tag}>{tag}</li>) }
-                </ul>
+                {/* Beloe on onClick = we passed function reference, not calling that function. Also 'onClick' is case sensitive */}
+                <button style={{ fontWeight: 'bold' }} onClick={this.handleIncrement} className="btn btn-secondary btn-sm" >Increment</button>
             </React.Fragment>
         );
     }
