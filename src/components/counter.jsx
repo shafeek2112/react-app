@@ -31,8 +31,10 @@ class Counter extends Component {
     }*/
 
     //2nd method - use arrow function
-    handleIncrement = () => {
+    handleIncrement = (product) => {
         
+        console.log(product)
+
         //To change the state property we have to use setState function.
         this.setState({ count: this.state.count + 1 });
     }
@@ -42,8 +44,9 @@ class Counter extends Component {
         return (
             <React.Fragment>
                 <span style={this.style} className={this.getBadgeClassNames()} >{ this.countFormat() }</span> 
-                {/* Beloe on onClick = we passed function reference, not calling that function. Also 'onClick' is case sensitive */}
-                <button style={{ fontWeight: 'bold' }} onClick={this.handleIncrement} className="btn btn-secondary btn-sm" >Increment</button>
+                
+                {/* Beloe on onClick = we are passing the simple arrow function to handole the parameter, otherwise we cannot send the parameter to 'handleIncrement' function  */}
+                <button style={{ fontWeight: 'bold' }} onClick={() => this.handleIncrement({id : 1})} className="btn btn-secondary btn-sm" >Increment</button>
             </React.Fragment>
         );
     }
