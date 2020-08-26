@@ -14,16 +14,26 @@ class Counter extends Component {
         fontWeight : 'bold',
     }
 
-    rederTagList() {
+    //constructor for given this to this 'handleIncrement' function.
+    /*constructor() {
 
-        if(this.state.tags.length  === 0)  return <p>There are no tags</p>
+        super();
+        // console.log('constructor this -> ', this)
+        this.handleIncrement = this.handleIncrement.bind(this) // 1st method.
+    } */
 
-        return this.state.tags.map(tag => <li key={tag}>{tag}</li>) 
-    }
+    //***********************  'this' keyword wont be available inside the normal function, even that function inside the class. So they  are two ways to do this.
+    //*********************** One is use the constructor and the bind method.
+    //*********************** Other one is change the 'handleIncrement' below method to arrow function.
+    /*handleIncrement() {
 
-    handleIncrement() {
+        console.log("Increment Clicked ", this)
+    }*/
 
-        console.log("Increment Clicked "+ this)// this keyword is undefined in this function. 
+    //2nd method - use arrow function
+    handleIncrement = () => {
+        
+        console.log("Increment Clicked ", this)
     }
 
     render() {
