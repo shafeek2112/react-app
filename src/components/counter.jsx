@@ -42,6 +42,8 @@ class Counter extends Component {
         console.log(this.props);
         return (
             <div>
+
+                {this.props.children}
                 <span style={this.style} className={this.getBadgeClassNames()} >{ this.countFormat() }</span> 
                 
                 {/* Beloe on onClick = we are passing the simple arrow function to handole the parameter, otherwise we cannot send the parameter to 'handleIncrement' function  */}
