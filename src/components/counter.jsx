@@ -42,12 +42,15 @@ class Counter extends Component {
         console.log(this.props);
         return (
             <div>
-
-                {this.props.children}
                 <span style={this.style} className={this.getBadgeClassNames()} >{ this.countFormat() }</span> 
                 
                 {/* Beloe on onClick = we are passing the simple arrow function to handole the parameter, otherwise we cannot send the parameter to 'handleIncrement' function  */}
                 <button style={{ fontWeight: 'bold' }} onClick={() => this.handleIncrement({id : 1})} className="btn btn-secondary btn-sm" >Increment</button>
+
+                {/* React RULE - For modifying the state like delete, add, edit - should be done at the componenet where this state is presented. So below we raise the 
+                    delete event and then Counters component will handle this event  
+                */}
+                <button onClick={this.props.onDelete} className="btn btn-danger btn-sm m-2">Delete</button>
             </div>
         );
     }
