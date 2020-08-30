@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 class Counter extends Component {
 
     state = {
-        count : 0,
+        value : this.props.value,
         tags  : ['tag1','tag2', 'tag3'],
     }
 
@@ -32,34 +32,33 @@ class Counter extends Component {
 
     //2nd method - use arrow function
     handleIncrement = (product) => {
-        
-        console.log(product)
 
         //To change the state property we have to use setState function.
-        this.setState({ count: this.state.count + 1 });
+        this.setState({ value: this.state.value + 1 });
     }
 
     render() {
 
+        console.log(this.props);
         return (
-            <React.Fragment>
+            <div>
                 <span style={this.style} className={this.getBadgeClassNames()} >{ this.countFormat() }</span> 
                 
                 {/* Beloe on onClick = we are passing the simple arrow function to handole the parameter, otherwise we cannot send the parameter to 'handleIncrement' function  */}
                 <button style={{ fontWeight: 'bold' }} onClick={() => this.handleIncrement({id : 1})} className="btn btn-secondary btn-sm" >Increment</button>
-            </React.Fragment>
+            </div>
         );
     }
 
     getBadgeClassNames() {
         let classes = "badge m-2 ";
-        classes += (this.state.count === 0) ? 'badge-warning' : 'badge-primary';
+        classes += (this.state.value === 0) ? 'badge-warning' : 'badge-primary';
         return classes;
     }
 
     countFormat() {
-        const { count } = this.state;
-        return (count === 0) ? 'Zero' : count;
+        const { value } = this.state;
+        return (value === 0) ? 'Zero' : value;
     }
 }
 
