@@ -39,7 +39,7 @@ class Counter extends Component {
 
     render() {
 
-        console.log(this.props);
+        // console.log(this.props);
         return (
             <div>
                 <span style={this.style} className={this.getBadgeClassNames()} >{ this.countFormat() }</span> 
@@ -50,7 +50,7 @@ class Counter extends Component {
                 {/* React RULE - For modifying the state like delete, add, edit - should be done at the componenet where this state is presented. So below we raise the 
                     delete event and then Counters component will handle this event  
                 */} 
-                <button onClick={this.props.onDelete} className="btn btn-danger btn-sm m-2">Delete</button>
+                <button onClick={() => this.props.onDelete(this.props.id)} className="btn btn-danger btn-sm m-2">Delete</button>
             </div>
         );
     }
