@@ -54,18 +54,26 @@ class App extends Component {
 	// 	console.log(this.props)
 	// }
 	
-	handleIncrement = counterParam => {
+	handleIncrementDecrement = (counterParam,type) => {
 	
 		// In we clone the state.counter obj  into another and then modify it will directly change the state obj,
 		// so to avoid this, first clone the state ob and then clone the particular counter obj which need to
 		// be changed in the same index, then it wont change the state directly.
 		const counters = [...this.state.counters];
-		const index = counters.indexOf(counterParam)
-		counters[index] = {...counterParam} // This line is used to create different counters obj from state.
-		counters[index].value++;
+		const index = counters.indexOf(counterParam);
+		counters[index] = {...counterParam}; // This line is used to create different counters obj from state.
+		(type == 'increment') ? counters[index].value++ : counters[index].value-- ;
 		console.log(counters, this.state.counters);
 		this.setState({ counters });
 	}
+
+	/*handleDecrement = (counterParam) => {
+		const counters = [...this.state.counters];
+		const index = counters.indexOf(counterParam)
+		counters[index] = {...counterParam} // This line is used to create different counters obj from state.
+		counters[index].value--;
+		this.setState({ counters });
+	}*/
 	
 	handleDelete = (counterId) => {
 		// console.log('Event handler called.',counter)
@@ -90,7 +98,9 @@ class App extends Component {
 					counters={this.state.counters}
 					onReset={this.handleReset}
 					onDelete={this.handleDelete}
-					onIncrement={this.handleIncrement}
+					// onIncrement={this.handleIncrement}
+					// onDecrement={this.handleDecrement}
+					onIncrementDecrement={this.handleIncrementDecrement}
 				/>
 			</React.Fragment>
 		);
