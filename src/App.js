@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/navbar';
 import Counters from './components/counters';
@@ -14,6 +13,46 @@ class App extends Component {
 			{id: 4, value : 0},
 		]
 	}
+
+	//React - lifecycle hooks
+	/*
+	--------------------------------------- Mounting Phase ----------------------------------
+	1. Constructor, 
+		When componut instance is created this is the first method called. So its a good place to set the state
+		Here is we should directly set the state without using setState method. Becas setState method will be 
+		assessable only component is fully mounted.
+		Need to pass the parameter 'props' in construtor n super to access the this.props.
+
+	2. Render
+		This is second method called after the construtor. Note: in this time, all the child component will be
+		render recursivly.
+
+	3. ComponentDidMount
+		This is the last method called when component if fully mounted.
+		This is the perfect place for put AJAX call and change the state according to server response.
+
+	--------------------------------------- Updating Phase ----------------------------------
+	1. Render
+		Render method will be called when any update in dom. Then it will render all the child component
+		based on the change. Only update the changed element in dom.
+		React will compare changed dom with previous dom and then change only the affected one.
+
+	2. ComponentDidUpdate
+		This will be called after the changes done. In this method we can access previous state n props via 
+		prevProps and prevState parameter. Usin these we can compare with the new state n props then 
+		make AJAX call only if needed. This is the optimazion techinique
+	
+	--------------------------------------- Updating Phase ----------------------------------
+	1. ComponentWillUnMount
+		This will be called when component is going to remove from dom.
+		This is good place to cleanup actions.
+	*/
+
+	//When componut instance is created this is the first method called. So its a good 
+	// constructor(props) {
+	// 	super(props);
+	// 	console.log(this.props)
+	// }
 	
 	handleIncrement = counterParam => {
 	
